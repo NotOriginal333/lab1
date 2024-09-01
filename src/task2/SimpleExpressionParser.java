@@ -32,26 +32,18 @@ public class SimpleExpressionParser {
         String operator = matcher.group(2);
         double operand2 = Double.parseDouble(matcher.group(3));
 
-        double result;
-        switch (operator) {
-            case "+":
-                result = operand1 + operand2;
-                break;
-            case "-":
-                result = operand1 - operand2;
-                break;
-            case "*":
-                result = operand1 * operand2;
-                break;
-            case "/":
+        double result = switch (operator) {
+            case "+" -> operand1 + operand2;
+            case "-" -> operand1 - operand2;
+            case "*" -> operand1 * operand2;
+            case "/" -> {
                 if (operand2 == 0) {
                     throw new ArithmeticException("Ділення на нуль.");
                 }
-                result = operand1 / operand2;
-                break;
-            default:
-                throw new Exception("Непідтримувана операція.");
-        }
+                yield operand1 / operand2;
+            }
+            default -> throw new Exception("Непідтримувана операція.");
+        };
 
         return result;
     }
