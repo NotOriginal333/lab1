@@ -21,7 +21,6 @@ public class SimpleExpressionParser {
     }
 
     public static double evaluateExpression(String expression) throws Exception {
-        // Визначаємо регулярний вираз для підтримки форматів "2 + 4 = ?", "2 + 4 =", "2 + 4"
         Pattern pattern = Pattern.compile("\\s*(\\d+\\.?\\d*)\\s*([+\\-*/])\\s*(\\d+\\.?\\d*)\\s*(=\\s*\\?\\s*)?$");
         Matcher matcher = pattern.matcher(expression);
 
