@@ -13,7 +13,7 @@ public class SimpleExpressionParser {
         String expression = scanner.nextLine().trim();
 
         try {
-            double result = evaluateExpression(expression);
+            final double result = evaluateExpression(expression);
             System.out.println("Результат: " + result);
         } catch (Exception e) {
             System.out.println("Помилка: " + e.getMessage());
@@ -21,7 +21,8 @@ public class SimpleExpressionParser {
     }
 
     public static double evaluateExpression(String expression) throws Exception {
-        Pattern pattern = Pattern.compile("\\s*(\\d+\\.?\\d*)\\s*([+\\-*/])\\s*(\\d+\\.?\\d*)\\s*(=\\s*\\?\\s*)?$");
+        Pattern pattern = Pattern.compile(
+                "\\s*(\\d+\\.?\\d*)\\s*([+\\-*/])\\s*(\\d+\\.?\\d*)\\s*(=\\s*\\?\\s*)?$");
         Matcher matcher = pattern.matcher(expression);
 
         if (!matcher.matches()) {
@@ -32,7 +33,7 @@ public class SimpleExpressionParser {
         String operator = matcher.group(2);
         double operand2 = Double.parseDouble(matcher.group(3));
 
-        double result = switch (operator) {
+        return switch (operator) {
             case "+" -> operand1 + operand2;
             case "-" -> operand1 - operand2;
             case "*" -> operand1 * operand2;
@@ -44,7 +45,5 @@ public class SimpleExpressionParser {
             }
             default -> throw new Exception("Непідтримувана операція.");
         };
-
-        return result;
     }
 }

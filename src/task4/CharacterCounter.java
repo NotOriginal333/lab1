@@ -8,9 +8,10 @@ public class CharacterCounter {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Введіть рядок: ");
-        String input = scanner.nextLine();
+        //String input = scanner.nextLine();
+        String devString = "AABBCCCAABC"; //A-4 B-3 C-4, comment this if previous uncommented
 
-        char[] chars = input.toCharArray();
+        char[] chars = devString.toCharArray(); //input.toCharArray();
 
         CharCount[] charCounts = new CharCount[256]; // try dynamic
 

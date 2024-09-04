@@ -3,15 +3,15 @@ package task5;
 public class SubstringCounter {
 
     public static void main(String[] args) {
-        String[][] matrix = {
+        final String[][] matrix = {
                 {"hello", "world", "java"},
                 {"example", "hello", "substring"},
                 {"test", "string", "hello"}
         };
 
-        String substring = "hello";
+        final String substring = "hello";
 
-        int count = countSubstringOccurrences(matrix, substring);
+        final int count = countSubstringOccurrences(matrix, substring);
         System.out.println("Кількість входжень підрядка \"" + substring + "\": " + count);
     }
 
