@@ -1,12 +1,10 @@
 package task4;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class CharacterCounter {
 
-    final static String devString = "AABBCCCAABC"; //A-4 B-3 C-4
+    final static String devString = "ddAABBCCCAABC"; //A-4 B-3 C-4 d-2
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -17,20 +15,43 @@ public class CharacterCounter {
 
         char[] chars = devString.toCharArray(); //input.toCharArray();
 
-        Map<Character, Integer> result = countChars(chars);
+        boolean[] processed = new boolean[256];
 
         System.out.println("Кількість кожного символу у рядку:");
-        for (Map.Entry<Character, Integer> entry : result.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+
+        for (char c : chars) {
+            if (!processed[c]) {
+                countChars ch = new countChars(c);
+                System.out.println(ch.getSymbol() + " : " + ch.countSymbols(chars));
+                processed[c] = true;
+            }
         }
     }
 
-    public static Map<Character, Integer> countChars(char[] chars) {
-        Map<Character, Integer> charCounts = new HashMap<>();
+    public static class countChars {
+        private final char symbol;
+        private int count = 0;
 
-        for (char c : chars) {
-            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
+        public countChars(char symbol) {
+            this.symbol = symbol;
         }
-        return charCounts;
+
+        public char getSymbol() {
+            return symbol;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public int countSymbols(char[] chars) {
+            for (char ch : chars) {
+                if (ch == symbol) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
     }
 }
