@@ -1,49 +1,36 @@
 package task4;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CharacterCounter {
+
+    final static String devString = "AABBCCCAABC"; //A-4 B-3 C-4
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Введіть рядок: ");
         //String input = scanner.nextLine();
-        String devString = "AABBCCCAABC"; //A-4 B-3 C-4, comment this if previous uncommented
+
 
         char[] chars = devString.toCharArray(); //input.toCharArray();
 
-        CharCount[] charCounts = new CharCount[256]; // try dynamic
-
-        for (int i = 0; i < 256; i++) {
-            charCounts[i] = new CharCount((char) i, 0);
-        }
-
-        for (char c : chars) {
-            charCounts[c].count++;
-        }
+        Map<Character, Integer> result = countChars(chars);
 
         System.out.println("Кількість кожного символу у рядку:");
-        for (CharCount pair : charCounts) {
-            if (pair.count > 0) {
-                System.out.println(pair);
-            }
+        for (Map.Entry<Character, Integer> entry : result.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
         }
     }
 
-    public static class CharCount {
-        char character;
-        int count;
+    public static Map<Character, Integer> countChars(char[] chars) {
+        Map<Character, Integer> charCounts = new HashMap<>();
 
-        public CharCount(char character, int count) {
-            this.character = character;
-            this.count = count;
+        for (char c : chars) {
+            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
         }
-
-        @Override
-        public String toString() {
-            return character + " : " + count;
-        }
+        return charCounts;
     }
-
 }

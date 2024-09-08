@@ -2,20 +2,20 @@ package task5;
 
 public class SubstringCounter {
 
+    final static String[][] matrix = {
+            {"hello", "world", "java"},
+            {"example", "hello", "substring"},
+            {"test", "string", "hello"}
+    };
+
+    final static String substring = "hello";
+
     public static void main(String[] args) {
-        final String[][] matrix = {
-                {"hello", "world", "java"},
-                {"example", "hello", "substring"},
-                {"test", "string", "hello"}
-        };
-
-        final String substring = "hello";
-
         final int count = countSubstringOccurrences(matrix, substring);
         System.out.println("Кількість входжень підрядка \"" + substring + "\": " + count);
     }
 
-    public static int countSubstringOccurrences(String[][] matrix, String substring) {
+    public static int countSubstringOccurrences(final String[][] matrix, final String substring) {
         int count = 0;
 
         for (String[] strings : matrix) {
@@ -27,7 +27,7 @@ public class SubstringCounter {
         return count;
     }
 
-    public static int countOccurrencesInString(String str, String substring) {
+    public static int countOccurrencesInString(final String str, final String substring) {
         int count = 0;
         int index = 0;
 

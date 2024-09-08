@@ -20,7 +20,7 @@ public class SimpleExpressionParser {
         }
     }
 
-    public static double evaluateExpression(String expression) throws Exception {
+    public static double evaluateExpression(final String expression) throws Exception {
         Pattern pattern = Pattern.compile(
                 "\\s*(\\d+\\.?\\d*)\\s*([+\\-*/])\\s*(\\d+\\.?\\d*)\\s*(=\\s*\\?\\s*)?$");
         Matcher matcher = pattern.matcher(expression);
@@ -29,9 +29,9 @@ public class SimpleExpressionParser {
             throw new Exception("Неправильний формат виразу.");
         }
 
-        double operand1 = Double.parseDouble(matcher.group(1));
-        String operator = matcher.group(2);
-        double operand2 = Double.parseDouble(matcher.group(3));
+        final double operand1 = Double.parseDouble(matcher.group(1));
+        final String operator = matcher.group(2);
+        final double operand2 = Double.parseDouble(matcher.group(3));
 
         return switch (operator) {
             case "+" -> operand1 + operand2;

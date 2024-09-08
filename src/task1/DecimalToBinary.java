@@ -24,7 +24,7 @@ public class DecimalToBinary {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Введіть ціле число: ");
-        int decimalNumber = 125; //scanner.nextInt(); //it must be 1111101 for 125
+        final int decimalNumber = scanner.nextInt(); //it must be 1111101 for 125
 
         String binaryNumber = convertToBinary(decimalNumber);
 

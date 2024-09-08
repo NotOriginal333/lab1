@@ -29,26 +29,26 @@ public class CurrencyConverter {
         }
     }
 
-    public static double convertCurrency(String input) throws Exception {
+    public static double convertCurrency(final String input) throws Exception {
 
-        String[] parts = input.split("\\s+");
+        final String[] parts = input.split("\\s+");
 
         if (parts.length != 4 || !parts[2].equalsIgnoreCase("into")) {
             throw new Exception("Неправильний формат введення. Спробуйте формат '100 UAH into USD'.");
         }
 
-        double amount = Double.parseDouble(parts[0]);
-        String fromCurrency = parts[1].toUpperCase();
-        String toCurrency = parts[3].toUpperCase();
+        final double amount = Double.parseDouble(parts[0]);
+        final String fromCurrency = parts[1].toUpperCase();
+        final String toCurrency = parts[3].toUpperCase();
 
         if (!exchangeRates.containsKey(fromCurrency) || !exchangeRates.containsKey(toCurrency)) {
             throw new Exception("Невідома валюта.");
         }
 
-        double rateFrom = exchangeRates.get(fromCurrency);
-        double rateTo = exchangeRates.get(toCurrency);
+        final double rateFrom = exchangeRates.get(fromCurrency);
+        final double rateTo = exchangeRates.get(toCurrency);
 
-        double amountInUAH = amount * rateFrom;
+        final double amountInUAH = amount * rateFrom;
         return amountInUAH / rateTo;
     }
 }
